@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hi!</p>
+    <script>
+        const INITAL_ENERGY = 10;
+        const MIN_ENERGY = 0;
+        const LOW_ENERGY_THRESHOLD = 3;
+        let energy = INITAL_ENERGY;
+        
+        while (energy >= MIN_ENERGY) {
+            console.log(`Текущий уровень энергии: ${energy}`);
+            if (energy === MIN_ENERGY) {
+                console.log("Робот грустит... Нужно подзарядить!");
+            } else if (energy <= LOW_ENERGY_THRESHOLD) {
+                console.log("Робот начинает чувствовать усталось...");
+            } else {
+                console.log("Робот счастлив и бодрствует!");
+            }
+            energy--;
+        }
+        
+        console.log("Программа завершена. Робот отдыхает.");
+
+    </script>
+</body>
+</html>
