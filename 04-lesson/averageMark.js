@@ -35,7 +35,17 @@ function reverseArray(array) {
     return reverseArray
 }
 
-const myScores = [32, 54, 65, 87, 96, 43];
+function removeElement(array, element) {
+    const modifiedArray = [];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] !== element) {
+            modifiedArray[modifiedArray.length] = array[i];
+        }
+    }
+    return modifiedArray;
+}
+
+const myScores = [32, 54, 65, 87, 96, 43, 11];
 
 const average = calculateAverage(myScores);
 console.log(`Average student score: ${average}`);
@@ -45,5 +55,7 @@ console.log(`Classified score: ${classifiedScores}`);
 
 const reversedArray = reverseArray(myScores);
 console.log(reversedArray);
-console.log(myScores.reverse());
+// console.log(myScores.reverse());
 
+const newArray = removeElement(myScores, 96);
+console.log(newArray);
