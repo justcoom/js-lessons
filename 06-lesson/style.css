@@ -1,0 +1,12 @@
+.title {
+    color: darkgreen;
+}
+
+.item {
+    padding: 5px 0;
+    font-family: Arial, sans-serif;
+}
+
+.current {
+    font-weight: 700;
+}
