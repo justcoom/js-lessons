@@ -23,10 +23,20 @@ const model = {
 		view.renderTasks(model.tasks);
 	},
 
-  deleteTask(taskId) {
-    this.tasks = this.tasks.filter(task => task.id !== taskId)
-    view.renderTasks(model.tasks)
-  }
+	deleteTask(taskId) {
+		this.tasks = this.tasks.filter((task) => task.id !== taskId);
+		view.renderTasks(model.tasks);
+	},
+
+	clearTask() {
+		this.tasks = this.tasks.filter((task) => !task.isDone);
+		view.renderTasks(model.tasks);
+	},
+
+	counterTasks() {
+		const countArr = this.tasks.filter((task) => !task.isDone);
+		return countArr.length;
+	},
 };
 
 // отображение данных: рендер списка задач, размещение обработчиков событий
@@ -50,12 +60,22 @@ const view = {
 				controller.toggleTask(taskId);
 			}
 
-      if (event.target.classList.contains('delete-button')) {
-        const taskId = +event.target.parentElement.id
-        controller.deleteTask(taskId)
-        // model.deleteTask(taskId) ПОЧЕМУ НЕЛЬЗЯ СРАЗУ ЗДЕСЬ ПИСАТЬ
-      }
+			if (event.target.classList.contains("delete-button")) {
+				const taskId = +event.target.parentElement.id;
+				controller.deleteTask(taskId);
+				// model.deleteTask(taskId) ПОЧЕМУ НЕЛЬЗЯ СРАЗУ ЗДЕСЬ ПИСАТЬ
+			}
 		});
+
+		const clearButton = document.querySelector(".clear-done-tasks");
+		clearButton.addEventListener("click", () => {
+			controller.clearTask();
+		});
+
+		const counter = document.createElement("p");
+		counter.classList.add("counter");
+		document.body.appendChild(counter);
+		this.updateCounter();
 	},
 
 	renderTasks(tasks) {
@@ -70,6 +90,16 @@ const view = {
             </li>`;
 		});
 		list.innerHTML = tasksHTML;
+
+		this.updateCounter();
+	},
+
+	updateCounter() {
+		const counterElement = document.querySelector(".counter");
+		if (counterElement) {
+			const counter = model.counterTasks();
+			counterElement.textContent = `Счетчик невыполненных задач: ${counter}`;
+		}
 	},
 };
 
@@ -83,9 +113,12 @@ const controller = {
 	toggleTask(taskId) {
 		model.toggleTask(taskId);
 	},
-  deleteTask(taskId) {
-    model.deleteTask(taskId)
-  }
+	deleteTask(taskId) {
+		model.deleteTask(taskId);
+	},
+	clearTask() {
+		model.clearTask();
+	},
 };
 
 const init = () => {

@@ -1,3 +1,9 @@
+/* body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
 .list {
     display: flex;
     flex-direction: column;
@@ -7,4 +13,29 @@
 
 .done .task-title {
     text-decoration: line-through;
+}
+
+.clear-done-tasks {
+    background-color: aqua;
+    padding: 10px;
+    border: 2px solid rgb(12, 164, 224);
+    margin: 10px 0px;
+    border-radius: 5px;
+}
+
+.counter {
+    color: blue;
+    border-radius: 5px;
+    border: 2px double blue;
+    max-width: 230px;
+    padding: 5px;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    margin-left: 20px;
+    border-radius: 5px;
 }
